@@ -1,15 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import DashboardPage from "./pages/DashboardPage";
+import TransactionHistoryPage from "./pages/TransactionHistoryPage";
+import AdminPage from "./pages/AdminPanelPage";
+import Navbar from "./components/Navbar";
+
+function Layout() {
+  const location = useLocation();
+
+  const hideNavbar =
+    location.pathname === "/" ||
+    location.pathname === "/signup";
+
+  return (
+    <>
+      {!hideNavbar && <Navbar />}
+
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/transactions" element={<TransactionHistoryPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+      </Routes>
+    </>
+  );
+}
 
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen bg-blue-500">
-      <h1 className="text-white text-4xl font-bold">
-        Tailwind Working 🚀
-      </h1>
-    </div>
+    <Router>
+      <Layout />
+    </Router>
   );
 }
 

@@ -15,6 +15,7 @@ app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/stocks", require("./routes/stockRoutes"));
 app.use("/api/watchlist", require("./routes/watchlistRoutes"));
 app.use("/api/transactions", require("./routes/transactionRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 app.get("/", (req, res) => {
     res.send("Backend Running 🚀");
