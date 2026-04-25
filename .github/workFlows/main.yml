@@ -1,0 +1,31 @@
+name: MERN CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # Backend setup
+    - name: Install Backend Dependencies
+      run: |
+        cd backend
+        npm install
+
+    # Frontend setup
+    - name: Install Frontend Dependencies
+      run: |
+        cd frontend
+        npm install
+
+    # Build frontend
+    - name: Build Frontend
+      run: |
+        cd frontend
+        npm run build
